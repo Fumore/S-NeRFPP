@@ -49,6 +49,34 @@
 
     <section>
         <div class="container">
+
+            <div class="row" style="margin-top:5px">
+                <div class="col-12 text-center">
+                    <h2>Reconstrcution Method of Dynamic scenes</h2>
+                    <hr style="margin-top:0px">
+                </div>
+            </div>
+            <img class="img-fluid" src="img/mvbg.png" alt="">
+            <br>
+            <br>
+
+            <ul>
+                We use a cascade sampling strategy to reconstruct the background and moving objects together. For each sample point on the ray casting from o with direction d,
+                 we use an object network whose weights are shared through all sampling stages to decode volume rendering attributes when the point is in the corresponding object bounding box while background/proposal network to decode the point not in any box. 
+                 Notice that if the sampling point is not in the final stage, the network only outputs density and the gradient will not pass to the object network. Rendering weights computed by the proposal stage will be only supervised by the rendering 
+                 weights in the next stage by proposal Loss. Each network is composed of a multi-scale hash grid and an MLP decoder. For better anti-aliasing rendering, we follow Zip-NeRF 
+                and aggregate the hash grid features in the cone for the background points before passing them to the MLP while only using down-weighting features for the object points.
+            </ul>
+
+        </div>
+    </section>
+    <br>
+    <br>
+
+
+
+    <section>
+        <div class="container">
             <div class="row">
                 <div class="col-12 text-center">
                     <h2>Rendered RGB and Depth</h2>
@@ -65,33 +93,7 @@
             </div>
         </div>
     </section>
-    <br>
-    <br>
 
-    <section>
-        <div class="container">
-            <div class="row">
-                <div class="col-12 text-center">
-                    <h2>Car Inseterion from Other Dataset and Harmonization</h2>
-                </div>
-            </div>
-            <hr style="margin-top:0px">
-
-            <div class="b-row">
-                <figure style="text-align: center;">
-                    <video width="100%" playsinline="" autoplay="" loop="" preload="" muted="">
-                      <source src="img/videos/simu_demo1_after.mp4" type="video/mp4">
-                    </video>
-                </figure>
-                <figure style="text-align: center;">
-                    <video width="100%" playsinline="" autoplay="" loop="" preload="" muted="">
-                      <source src="img/videos/simu_demo2_after.mp4" type="video/mp4">
-                    </video>
-                </figure>
-            </div>
-
-        </div>
-    </section>
     <br>
     <br>
 
@@ -146,6 +148,58 @@
 
         </div>
     </section>
+    <br>
+    <br>
+
+    <section>
+        <div class="container">
+
+            <div class="row" style="margin-top:5px">
+                <div class="col-12 text-center">
+                    <h2>Simulation Pipeline</h2>
+                    <hr style="margin-top:0px">
+                </div>
+            </div>
+            <img class="img-fluid" src="img/pipeline.png" alt="">
+            <br>
+            <br>
+
+            <ul>
+                The whole pipeline of our simulation system. We construct our background representation and foreground bank. Given any pose of the camera and object, we render for these two branches separately.
+                 Then we judge the occlusion relationship between the foreground and background by depth, process the edge and illumination of the inserted object, render the shadow, and finally obtain the simulation data with labels.
+            </ul>
+
+        </div>
+    </section>
+    <br>
+    <br>
+
+
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <h2>Simulation: Car Inseterion from Other Dataset and Harmonization</h2>
+                </div>
+            </div>
+            <hr style="margin-top:0px">
+
+            <div class="b-row">
+                <figure style="text-align: center;">
+                    <video width="100%" playsinline="" autoplay="" loop="" preload="" muted="">
+                      <source src="img/videos/simu_demo1_after.mp4" type="video/mp4">
+                    </video>
+                </figure>
+                <figure style="text-align: center;">
+                    <video width="100%" playsinline="" autoplay="" loop="" preload="" muted="">
+                      <source src="img/videos/simu_demo2_after.mp4" type="video/mp4">
+                    </video>
+                </figure>
+            </div>
+
+        </div>
+    </section>
+
     <br>
     <br>
 
